@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {
+  ArrowUpRight,
   Award,
+  BookOpen,
   Calendar,
-  CircleAlert,
-  CircleCheck,
   Download,
   ExternalLink,
-  FileText,
   Linkedin,
   Mail,
   MapPin,
   Menu,
   Phone,
   Quote,
-  TrendingUp,
   X,
   Zap,
-  ChevronRight,
 } from 'lucide-react';
 
 interface ContactInfo {
@@ -36,25 +33,6 @@ interface ExperienceItem {
   role: string;
   duration: string;
   bullets: string[];
-}
-
-interface CaseStudy {
-  id: string;
-  title: string;
-  subtitle: string;
-  image: string;
-  tags: string[];
-  problem: string;
-  painPoints: string[];
-  businessContext: string;
-  role: string;
-  hypotheses: string[];
-  dataResearch: string;
-  solution: string;
-  tradeOffs: string[];
-  impact: string[];
-  improvements: string;
-  driveLink: string;
 }
 
 interface ProjectWorkflowStep {
@@ -99,11 +77,18 @@ interface Testimonial {
   text: string;
 }
 
+interface PMInsight {
+  title: string;
+  tag: string;
+  description: string;
+  link: string;
+}
+
 const CONTACT_INFO: ContactInfo = {
   email: "Prasadkaushal3@gmail.com",
   phone: "+91 8093786521",
   linkedin: "https://www.linkedin.com/in/kaushalprasadkaush7/",
-  resume: "https://drive.google.com/file/d/1MNAzsRsR7R6np39hwHMkelGHGZfeMeta/view?usp=sharing",
+  resume: "https://drive.google.com/file/d/1YOqS-q5v20SrX5p5X767GD7tMqhn_mCk/view?usp=sharing",
 };
 
 const CORE_COMPETENCIES: Competency[] = [
@@ -150,10 +135,10 @@ const WORK_EXPERIENCE: ExperienceItem[] = [
     role: "Product Manager (Remote)",
     duration: "Oct 2024 – Present",
     bullets: [
-      "Built an AI-powered Employee LMS MVP with personalization & performance analytics, contributing to $0.5M funding from Hot Staff.",
-      "Designed and deployed a RAG-based AI support chatbot, reducing support tickets by 28%.",
-      "Redesigned onboarding for an internal product (Improver), increasing sign-ups by 15%.",
-      "Led UAT across 4 in-house AI products, reducing release defects by 17%.",
+      "Led 0→1 launch of a RAG-based support agent; defined the retrieval and grounding approach and an eval set of 100 real queries, reducing support tickets by 28% over 3 months at 90% answer accuracy.",
+      "Scoped and shipped an AI-powered Employee LMS MVP (personalized learning paths + performance analytics) that helped close a $0.5M enterprise contract with Hot Staff.",
+      "Owned UAT and release gating across 4 AI products; introduced test checklists & eval gates, cutting release defects by 17%.",
+      "Rebuilt onboarding for Improver (a video-conferencing product), removing unwanted steps; sign-up completion rose from 60% to 86%.",
     ],
   },
   {
@@ -161,18 +146,18 @@ const WORK_EXPERIENCE: ExperienceItem[] = [
     role: "Product Specialist (Remote)",
     duration: "Feb 2024 – Jul 2024",
     bullets: [
-      "Launched a WhatsApp-based AI support chatbot, improving CSAT from 4.1 → 4.5 (10% uplift).",
-      "Diagnosed user drop-offs via data analysis & UX audits; shipped improvements that boosted weekly retention by 20%.",
+      "Launched a WhatsApp-based AI support chatbot, deflecting 35% of repetitive queries; CSAT rose from 4.1 → 4.5.",
+      "Diagnosed user drop-offs via funnel analysis & UX audits; shipped 3 fixes that lifted weekly retention by 20%.",
       "Improved internal efficiency through structured product documentation and usability guidelines.",
     ],
   },
   {
-    company: "Rewardwise",
+    company: "RewardWise",
     role: "Associate Product Manager (Remote)",
     duration: "Mar 2023 – Feb 2024",
     bullets: [
-      "Owned end-to-end development of the Rewardwise app and onboarded the first 100 customers.",
-      "Rebuilt onboarding using data insights, increasing sign-ups by 30%.",
+      "Owned the product 0→1: defined the roadmap, KPIs, and rollout plan from 200+ user interviews and competitor research.",
+      "Acquired the first 100 customers through demos and outreach, turning their feedback into a specific roadmap change.",
       "Defined roadmap, KPIs, and rollout strategy from scratch.",
     ],
   },
@@ -197,102 +182,6 @@ const INTERNSHIPS: ExperienceItem[] = [
       "Performed data-driven market and competitor research to prioritize features.",
       "Conducted interviews & surveys to align product decisions with user expectations.",
     ],
-  },
-];
-
-const CASE_STUDIES: CaseStudy[] = [
-  {
-    id: "finmo",
-    title: "Finmo: Optimizing Business Cash Flow & Yield",
-    subtitle: "Enabling businesses to manage fluctuating revenue and generate additional income through smart treasury management.",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2011",
-    tags: ["FinTech", "B2B", "Treasury Management"],
-    problem: "Businesses often face challenges in managing their cash flow effectively, especially those with fluctuating revenue streams. Traditional payment solutions do not offer sufficient flexibility or opportunities for generating additional income.",
-    painPoints: [
-      "Idle cash sitting in current accounts without earning any yield or interest.",
-      "High difficulty in predicting upcoming payables against irregular revenue peaks.",
-      "Manual treasury management processes that are prone to error and time-consuming.",
-    ],
-    businessContext: "For SMEs, every bit of capital counts. In high-interest environments, leaving cash idle in a non-interest-bearing account represents a significant opportunity cost.",
-    role: "Lead Product Manager for the Treasury & Yield optimization module.",
-    hypotheses: [
-      "Automating the 'sweep' of surplus cash into liquid funds will increase merchant retention by providing immediate visible value.",
-      "Providing a visual cash flow forecast will reduce merchant reliance on high-interest short-term credit.",
-    ],
-    dataResearch: "Analyzed transaction patterns of 500+ merchants and interviewed 15 CFOs to identify the threshold of 'surplus' cash that remains untouched for 15+ days.",
-    solution: "Developed 'Finmo Yield', an automated treasury engine that identifies surplus cash and allows merchants to earn market-linked returns with T+0 liquidity.",
-    tradeOffs: [
-      "Decided to prioritize liquid funds over higher-yield corporate bonds to ensure merchants never faced a liquidity crisis during unforeseen revenue dips.",
-    ],
-    impact: [
-      "15% average increase in net income for early pilot merchants.",
-      "25% reduction in time spent on manual treasury management by finance teams.",
-      "Attained $2M+ in managed AUM within the first 100 days of launch.",
-    ],
-    improvements: "Introduce predictive AI that anticipates upcoming tax or payroll cycles to suggest optimal yield durations for every dollar.",
-    driveLink: "https://drive.google.com/file/d/1QY-lMzFmoCOrgVhf8JiRHdJh8Mlt32F1/view?usp=sharing",
-  },
-  {
-    id: "star-wars-strategy",
-    title: "Product Strategy: Star Wars Community Commerce",
-    subtitle: "Fostering vibrant communities between small retailers and fans through shared themed interests.",
-    image: "https://images.unsplash.com/photo-1593488913916-292bb05050f2?auto=format&fit=crop&q=80&w=2070",
-    tags: ["Strategy", "Community", "E-commerce"],
-    problem: "Small retailers struggle to reach niche enthusiast communities effectively, while fans lack a centralized platform that combines community engagement with trusted local commerce.",
-    painPoints: [
-      "Merchants lack tools for niche group-selling and targeted campaigns.",
-      "Fans experience fragmented engagement across multiple disconnected social and shopping platforms.",
-      "Low visibility for small business 'specialized' inventory among local users.",
-    ],
-    businessContext: "The goal is to leverage the massive Star Wars fandom to drive merchant empowerment and small business growth through a dedicated platform.",
-    role: "Lead Strategist defining vision, goals, and monetization frameworks.",
-    hypotheses: [
-      "Personalized experiences like custom avatars and mini-games will drive organic user base expansion.",
-      "A dedicated space for merchant-user connection will foster resilient local community formation.",
-    ],
-    dataResearch: "Conducted market analysis on fan behavior and retailer pain points in the collectibles and themed merchandise space.",
-    solution: "A hybrid community-commerce platform with social boards, merchant empowerment tools for group selling, and gamified engagement layers.",
-    tradeOffs: [
-      "Focused initially on community density and local merchant features rather than broad e-commerce logistics to ensure early 'stickiness'.",
-    ],
-    impact: [
-      "25% target increase in Community Engagement metrics.",
-      "15% reduction in merchant Customer Acquisition Costs.",
-      "Scalable monetization through seamless payment integrations and premium merchant tools.",
-    ],
-    improvements: "Implement AI-driven merchant matching to connect users with the most relevant local shop campaigns based on their specific fandom sub-interests.",
-    driveLink: "https://drive.google.com/file/d/1u8UyuoDzRWMUHCy4KmEnHse0-3HdpC1C/view?usp=sharing",
-  },
-  {
-    id: "pazcare",
-    title: "PAZcare: Revolutionizing Employee Health Benefits",
-    subtitle: "Scaling healthtech infrastructure for enterprise transparency and efficiency.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070",
-    tags: ["HealthTech", "B2B SaaS", "Operational Efficiency"],
-    problem: "Employee health benefits management was opaque, manually intensive, and suffered from high turnaround times for claims and policy adjustments.",
-    painPoints: [
-      "HR teams spent 20+ hours/month on manual policy updates.",
-      "Employees were frustrated by lack of visibility into claim status.",
-      "Insurance providers struggled with data fragmentation.",
-    ],
-    businessContext: "As health insurance costs rose, enterprises needed a way to optimize their spend while improving the employee experience to retain talent.",
-    role: "Core PM owning the employer dashboard and claim tracking workflow.",
-    hypotheses: [
-      "Automating policy adjustments via a self-serve portal will reduce HR support tickets by 40%.",
-      "A real-time claim tracker will increase employee trust and portal engagement.",
-    ],
-    dataResearch: "Conducted interviews with 15 HR managers and audited 500 support tickets. Found that 65% of queries were simple 'status check' requests.",
-    solution: "Developed a centralized 'Benefits Command Center' for HRs and a simplified mobile interface for employees with push notifications for every claim stage.",
-    tradeOffs: [
-      "Chose to postpone advanced analytics for HRs to prioritize the claim tracker, as the latter addressed the most immediate user frustration point.",
-    ],
-    impact: [
-      "40% reduction in benefits-related HR support tickets.",
-      "12% decrease in drop-offs during the claim filing process.",
-      "Average claim turnaround time visible to users reduced from 3 days to real-time updates.",
-    ],
-    improvements: "Integrate AI-driven claim estimation to set better user expectations before they even file a claim.",
-    driveLink: "https://drive.google.com/file/d/1PBsoidwX4lPCj6KxAhfqG4EZHatFf04e/view?usp=sharing",
   },
 ];
 
@@ -494,6 +383,39 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
+const PM_INSIGHTS: PMInsight[] = [
+  {
+    title: "The Rise of AI Evaluations (Evals) — and why they’re redefining Product Management",
+    tag: "AI Evals & Quality",
+    description: "Why traditional QA and unit tests fail for probabilistic LLMs, how to structure gold-standard eval datasets, and why modern AI Product Managers must own evaluation benchmarks before shipping.",
+    link: "https://www.linkedin.com/posts/kaushalprasadkaush7_ai-eval-activity-7381923905923571713-tqt_?utm_source=share&utm_medium=member_desktop&rcm=ACoAACcjST0B1uRjC1RlnTFh2iI-0IVfZ52FWW0",
+  },
+  {
+    title: "JSON Prompting – Quick Guide",
+    tag: "Prompt Engineering",
+    description: "A developer-ready guide for prompting LLMs to produce deterministic, schema-constrained JSON outputs for seamless downstream API parsing and UI rendering.",
+    link: "https://www.linkedin.com/posts/kaushalprasadkaush7_json-prompting-activity-7368870370164006915-c44T?utm_source=share&utm_medium=member_desktop&rcm=ACoAACcjST0B1uRjC1RlnTFh2iI-0IVfZ52FWW0",
+  },
+  {
+    title: "Learn basics of A/B testing",
+    tag: "Product Experimentation",
+    description: "Core statistical principles of product experimentation: designing hypotheses, minimum detectable effects (MDE), sample sizing, and avoiding common pitfalls like peeking at p-values.",
+    link: "https://www.linkedin.com/posts/kaushalprasadkaush7_ab-testing-activity-7399334837901373440-d0jh?utm_source=share&utm_medium=member_desktop&rcm=ACoAACcjST0B1uRjC1RlnTFh2iI-0IVfZ52FWW0",
+  },
+  {
+    title: "RAG, Fine-Tuning & LLMs",
+    tag: "GenAI Architecture",
+    description: "A clear PM decision matrix comparing prompt engineering, Retrieval-Augmented Generation (RAG), and model fine-tuning across cost, maintenance, data freshness, and accuracy.",
+    link: "https://www.linkedin.com/posts/kaushalprasadkaush7_ai-terms-activity-7426484453088153601-3rik?utm_source=share&utm_medium=member_desktop&rcm=ACoAACcjST0B1uRjC1RlnTFh2iI-0IVfZ52FWW0",
+  },
+  {
+    title: "how would you evaluate a RAG application as a Product Manager?",
+    tag: "RAG Evaluation Framework",
+    description: "A tactical breakdown for evaluating enterprise RAG applications: measuring retrieval precision and recall, context relevance, faithfulness, and answer hallucination prevention.",
+    link: "https://www.linkedin.com/posts/kaushalprasadkaush7_productmanagement-ai-rag-activity-7501145772390875136-ein8?utm_source=share&utm_medium=member_desktop&rcm=ACoAACcjST0B1uRjC1RlnTFh2iI-0IVfZ52FWW0",
+  },
+];
+
 /* Navbar Component */
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -511,8 +433,8 @@ const Navbar: React.FC = () => {
     { name: "About Me", href: "#about" },
     { name: "Work Experience", href: "#experience" },
     { name: "Education", href: "#education" },
+    { name: "My PM Insights", href: "#insights" },
     { name: "Projects & Proof of Work", href: "#projects" },
-    { name: "Case Studies", href: "#case-studies" },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -654,7 +576,7 @@ const HeroSection: React.FC = () => {
             href={CONTACT_INFO.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-10 py-4 bg-black text-white rounded-full font-bold flex items-center justify-center hover:bg-gray-800 transition-all shadow-xl active:scale-95 group"
+            className="w-full sm:w-auto px-10 py-4 bg-black text-white rounded-full font-bold flex items-center justify-center hover:bg-gray-800 transition-all shadow-xl active:scale-95 group cursor-pointer"
           >
             Download Resume
             <Download className="ml-2 w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
@@ -923,6 +845,81 @@ const EducationSection: React.FC = () => {
   );
 };
 
+/* My PM Insights Section */
+const PMInsightsSection: React.FC = () => {
+  return (
+    <section id="insights" className="py-24 bg-[#fafafa] scroll-mt-24 border-t border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
+          <div>
+            <div className="inline-block px-3 py-1 bg-gray-100 rounded-lg mb-4">
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">
+                Thought Leadership & Frameworks
+              </p>
+            </div>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">
+              My <span className="gradient-text">PM Insights</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
+              Essays, evaluation frameworks, and breakdown guides on AI Product Management, LLM evals, prompt engineering, and product experimentation.
+            </p>
+          </div>
+          <div className="mt-6 md:mt-0">
+            <a
+              id="view-all-pm-insights-linkedin"
+              href={CONTACT_INFO.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-sm font-bold text-gray-700 hover:text-black transition-colors group"
+            >
+              <Linkedin className="w-4 h-4 mr-2 text-[#0077b5]" />
+              Follow on LinkedIn
+              <ArrowUpRight className="w-4 h-4 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {PM_INSIGHTS.map((insight, idx) => (
+            <a
+              key={idx}
+              id={`pm-insight-card-${idx}`}
+              href={insight.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-8 bg-white border border-gray-100 rounded-3xl card-shadow flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-lg tracking-wide">
+                    {insight.tag}
+                  </span>
+                  <div className="p-2 bg-gray-50 rounded-xl text-gray-400 group-hover:text-[#0077b5] group-hover:bg-blue-50 transition-colors">
+                    <Linkedin className="w-4 h-4" />
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-black mb-3 leading-snug">
+                  {insight.title}
+                </h3>
+
+                <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                  {insight.description}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-sm font-bold text-gray-900 group-hover:text-[#0077b5] transition-colors">
+                <span>Read on LinkedIn</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 /* Projects & Proof of Work */
 const ProjectsSection: React.FC = () => {
   return (
@@ -984,257 +981,6 @@ const ProjectsSection: React.FC = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-/* Case Studies Section */
-interface CaseStudiesSectionProps {
-  onSelect: (study: CaseStudy) => void;
-}
-
-const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect }) => {
-  return (
-    <section id="case-studies" className="py-24 bg-[#fafafa] scroll-mt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-16">
-          <div className="inline-block px-3 py-1 bg-gray-200 rounded-lg mb-4">
-            <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">Deep Dives</p>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Case Studies</h2>
-          <p className="text-lg text-gray-600 max-w-2xl">
-            A technical look at problems I've solved, decisions I've made, and the measurable impact delivered.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {CASE_STUDIES.map((study) => (
-            <div
-              key={study.id}
-              id={`case-study-card-${study.id}`}
-              className="group relative p-10 bg-white border border-gray-100 rounded-[2.5rem] card-shadow flex flex-col h-full transition-all hover:border-black/5"
-            >
-              <div className="flex flex-wrap gap-2 mb-6">
-                {study.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-gray-50 text-[10px] font-black uppercase tracking-wider rounded-full text-gray-400"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-4 leading-tight group-hover:text-gray-700 transition-colors">
-                {study.title}
-              </h3>
-              <p className="text-gray-600 mb-8 leading-relaxed line-clamp-3">{study.subtitle}</p>
-
-              <div className="mt-auto space-y-6">
-                <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-50">
-                  <div>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Impact</p>
-                    <p className="text-sm font-bold text-gray-900">{study.impact[0]}</p>
-                  </div>
-                  <div>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Focus</p>
-                    <p className="text-sm font-bold text-gray-900">{study.tags[0]}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-2">
-                  <button
-                    id={`read-narrative-${study.id}`}
-                    onClick={() => onSelect(study)}
-                    className="inline-flex items-center px-6 py-3 bg-black text-white text-xs font-black uppercase tracking-widest rounded-full hover:bg-gray-800 transition-all active:scale-95 group/btn cursor-pointer"
-                  >
-                    Read Narrative
-                    <ChevronRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                  </button>
-                  {study.driveLink && (
-                    <a
-                      href={study.driveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 text-gray-300 hover:text-black transition-colors"
-                      title="View Detailed Doc"
-                      aria-label="View Detailed Doc"
-                    >
-                      <FileText className="w-5 h-5" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-/* Case Study Modal */
-interface CaseStudyModalProps {
-  study: CaseStudy;
-  onClose: () => void;
-}
-
-const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ study, onClose }) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), 10);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleClose = () => {
-    setMounted(false);
-    setTimeout(onClose, 300);
-  };
-
-  return (
-    <div
-      id={`case-study-modal-${study.id}`}
-      className={`fixed inset-0 z-[60] overflow-y-auto bg-white transition-transform duration-500 ease-out ${
-        mounted ? 'translate-y-0' : 'translate-y-full'
-      }`}
-    >
-      <div className="sticky top-0 z-10 bg-white/90 backdrop-blur-md border-b border-gray-100 px-6 py-4 flex justify-between items-center">
-        <span className="font-black text-gray-900 tracking-tighter uppercase text-xs">Strategy Case Study</span>
-        <button
-          id="close-modal-btn"
-          onClick={handleClose}
-          className="p-2 hover:bg-gray-100 rounded-full transition-colors active:scale-90 cursor-pointer"
-          aria-label="Close case study"
-        >
-          <X className="w-6 h-6" />
-        </button>
-      </div>
-
-      <div className="max-w-4xl mx-auto px-6 py-12 md:py-20 animate-reveal" style={{ animationDelay: '0.2s' }}>
-        <header className="mb-16">
-          <div className="flex gap-2 mb-6">
-            {study.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1 bg-gray-100 text-[10px] font-black uppercase tracking-widest rounded-full text-gray-500"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-8 leading-tight tracking-tighter">
-            {study.title}
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-500 leading-relaxed mb-10 font-medium">{study.subtitle}</p>
-
-          <div className="flex flex-wrap gap-4">
-            {study.driveLink && (
-              <a
-                href={study.driveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 bg-gray-900 text-white rounded-full font-bold hover:bg-black transition-all shadow-lg active:scale-95"
-              >
-                Full PRD / Doc
-                <ExternalLink className="ml-2 w-4 h-4" />
-              </a>
-            )}
-            <div className="flex items-center px-6 py-4 bg-gray-50 rounded-full border border-gray-100">
-              <CircleCheck className="w-5 h-5 mr-3 text-green-500" />
-              <span className="text-sm font-bold text-gray-700">Ownership: {study.role.split(' ')[0]}</span>
-            </div>
-          </div>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <section className="p-8 bg-gray-50 rounded-[2rem] border border-gray-100">
-            <h2 className="flex items-center text-xs font-black uppercase tracking-[0.2em] mb-6 text-gray-400">
-              <CircleAlert className="w-4 h-4 mr-2" />
-              The Problem
-            </h2>
-            <p className="text-gray-900 font-semibold leading-relaxed text-lg">{study.problem}</p>
-          </section>
-
-          <section className="p-8 bg-black rounded-[2rem]">
-            <h2 className="flex items-center text-xs font-black uppercase tracking-[0.2em] mb-6 text-gray-500">
-              <TrendingUp className="w-4 h-4 mr-2" />
-              North Star Result
-            </h2>
-            <p className="text-white font-black leading-tight text-3xl">{study.impact[0]}</p>
-            <p className="text-gray-500 text-sm mt-2 uppercase tracking-widest font-bold">Primary Success Metric</p>
-          </section>
-        </div>
-
-        <div className="space-y-20">
-          <section>
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 mb-8">User Pain Points</h2>
-            <div className="grid grid-cols-1 gap-4">
-              {study.painPoints.map((point, pIdx) => (
-                <div
-                  key={pIdx}
-                  className="flex items-start bg-white p-6 rounded-2xl border border-gray-100 shadow-sm transition-all hover:border-red-100"
-                >
-                  <div className="flex-shrink-0 w-8 h-8 bg-red-50 text-red-500 rounded-full flex items-center justify-center font-black text-xs mr-4">
-                    0{pIdx + 1}
-                  </div>
-                  <span className="text-gray-800 font-bold leading-snug">{point}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="bg-blue-50/30 p-10 rounded-[2.5rem] border border-blue-50">
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-blue-400 mb-8">Hypotheses & Assumptions</h2>
-            <div className="space-y-6">
-              {study.hypotheses.map((hyp, hIdx) => (
-                <div key={hIdx} className="flex items-start">
-                  <span className="text-blue-200 text-4xl font-serif mr-4">“</span>
-                  <p className="text-blue-900 font-bold text-xl leading-relaxed italic">{hyp}”</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 mb-8">Solution Architecture</h2>
-            <div className="prose prose-xl max-w-none">
-              <p className="text-gray-900 font-medium mb-10 leading-relaxed">{study.solution}</p>
-              <div className="bg-amber-50/50 border border-amber-100 p-8 rounded-2xl">
-                <h3 className="text-xs font-black text-amber-800 uppercase tracking-widest mb-4">Strategic Trade-offs</h3>
-                <p className="text-amber-900/80 font-bold leading-relaxed">{study.tradeOffs}</p>
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-gray-900 text-white p-12 rounded-[3rem] shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 blur-[100px] rounded-full" />
-            <h2 className="flex items-center text-xs font-black uppercase tracking-[0.4em] mb-12 text-gray-500 relative z-10">
-              Measurable Impact
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
-              {study.impact.map((imp, impIdx) => (
-                <div key={impIdx} className="border-l border-white/10 pl-8 transition-all hover:border-green-500">
-                  <p className="text-5xl font-black mb-3 text-white tracking-tighter">{imp.split(' ')[0]}</p>
-                  <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">
-                    {imp.split(' ').slice(1).join(' ')}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="pb-32 border-t border-gray-100 pt-16">
-            <h2 className="flex items-center text-xs font-black uppercase tracking-[0.3em] text-gray-400 mb-8">
-              Future Improvements
-            </h2>
-            <div className="p-10 bg-[#fafafa] rounded-[2rem] border border-gray-100 italic text-gray-500 text-xl font-medium leading-relaxed">
-              "{study.improvements}"
-            </div>
-          </section>
-        </div>
-      </div>
-    </div>
   );
 };
 
@@ -1313,8 +1059,6 @@ const FooterSection: React.FC = () => {
 
 /* Main App */
 export default function App() {
-  const [selectedStudy, setSelectedStudy] = useState<CaseStudy | null>(null);
-
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -1334,14 +1078,6 @@ export default function App() {
 
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
-    if (selectedStudy) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [selectedStudy]);
 
   return (
     <div className="min-h-screen relative bg-[#fafafa] text-[#1a1a1a]">
@@ -1363,10 +1099,10 @@ export default function App() {
           <EducationSection />
         </div>
         <div className="reveal-on-scroll">
-          <ProjectsSection />
+          <PMInsightsSection />
         </div>
         <div className="reveal-on-scroll">
-          <CaseStudiesSection onSelect={setSelectedStudy} />
+          <ProjectsSection />
         </div>
         <div className="reveal-on-scroll">
           <TestimonialsSection />
@@ -1374,10 +1110,6 @@ export default function App() {
       </main>
 
       <FooterSection />
-
-      {selectedStudy && (
-        <CaseStudyModal study={selectedStudy} onClose={() => setSelectedStudy(null)} />
-      )}
     </div>
   );
 }

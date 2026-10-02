@@ -55,6 +55,8 @@ interface Project {
   tags: string[];
   tagline?: string;
   observation?: string;
+  howItWorksHeading?: string;
+  howItWorksSubheading?: string;
   workflow?: ProjectWorkflowStep[];
   principles?: ProjectPrinciple[];
 }
@@ -277,16 +279,15 @@ const PROJECTS: Project[] = [
     ],
   },
   {
-    title: "RAG Chatbot",
-    link: "https://www.linkedin.com/feed/update/urn:li:activity:7393512749433184256/?originTrackingId=Nx1AKu6HQsuGlxTCCZrT%2Bw%3D%3D",
-    description: "A no-code AI chatbot that turns personal documents into an interactive, context-aware knowledge assistant.",
+    title: "Queryva",
+    link: "https://ragevaltest.vercel.app/",
+    description: "Queryva is a RAG chatbot that answers questions using only your documents. It cites the exact passages, and when the information isn’t in your files it returns 'I don't know'.",
     impact: [
-      "Connects Google Drive, Pinecone & OpenAI.",
-      "Automatically ingests, chunks & embeds documents.",
-      "Answers questions using context retrieved from your own data.",
-      "Built with n8n + Lovable.",
+      "Answers questions using only verified document context.",
+      "Cites exact passages for verifiable, trusted answers.",
+      "Zero-hallucination fallback when information is absent.",
     ],
-    tags: ["RAG AI", "NoCode AI", "GenAI", "Productivity", "SaaS"],
+    tags: ["GenAI", "Productivity", "SaaS"],
   },
   {
     title: "AI PRD Maker",
